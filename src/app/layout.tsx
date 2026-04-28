@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import DemoBanner from "@/components/DemoBanner";
+import { SITE_INDEXED } from "@/lib/constants";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -24,6 +26,14 @@ export const metadata: Metadata = {
       "Centro especializado en Pilates con máquinas y Fisioterapia en Chamberí, Madrid. Equipo de 8 fisioterapeutas certificados.",
     type: "website",
   },
+  robots: {
+    index: SITE_INDEXED,
+    follow: SITE_INDEXED,
+    googleBot: {
+      index: SITE_INDEXED,
+      follow: SITE_INDEXED,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -33,7 +43,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="min-h-full antialiased">{children}</body>
+      <body className="min-h-full antialiased">
+        {children}
+        <DemoBanner />
+      </body>
     </html>
   );
 }
